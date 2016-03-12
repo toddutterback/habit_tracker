@@ -15,7 +15,7 @@ class HabitsController < ApplicationController
   def create
     @habit = current_user.habits.new(habit_params)
     if @habit.save
-      redirect_to habits_path
+      redirect_to habit_path
     else
       render :new
     end
@@ -24,13 +24,16 @@ class HabitsController < ApplicationController
   def edit
 
   end
-  
+
   def update
-    if @habit.update(habit_params)
-      redirect_to habit_path
+    if params[:success]
+      @habit.number_completed += 1
     else
-      render :edit
+      @habit.number_completed = 0
     end
+
+    @habit.save
+    redirect_to habit_path
   end
 
   def destroy
@@ -41,7 +44,7 @@ class HabitsController < ApplicationController
   private
 
     def habit_params
-      params.require(:habit).permit(:name, :completed, :user_id)
+      params.require(:habit).permit(:name, :completed, :times_to_completion, :number_completed, :user_id)
     end
 
     def habit
