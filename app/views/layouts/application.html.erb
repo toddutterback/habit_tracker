@@ -5,13 +5,28 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
 <body>
 
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
+  <nav>
+    <div class="nav-wrapper">
+      <a href="/" class="brand-logo">Habitual</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><i class="material-icons">account_circle</i></li>
+        <li><i class="material-icons">add</i></li>
+        <li><i class="material-icons">home</i></li>
+      </ul>
+    </div>
+  </nav>
 
-  <%= yield %>
+  <div class = 'container'>
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
 
+
+    <%= yield %>
+  </div>
 </body>
 </html>

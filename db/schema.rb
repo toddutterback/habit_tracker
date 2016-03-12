@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20160312190435) do
   create_table "habits", force: :cascade do |t|
     t.string   "name"
     t.boolean  "completed"
+    t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

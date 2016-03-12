@@ -1,10 +1,15 @@
 Rails.application.routes.draw do
 
-  root "home#index"
+
+  root "habits#index"
 
  devise_for :users, controllers: {
  registrations: 'users/registrations'
  }
+
+resources :habits
+
+resources :profiles
 
 
   
