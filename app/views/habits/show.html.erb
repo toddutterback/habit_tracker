@@ -1,20 +1,33 @@
 <div class="center">
 
 <h1><%= @habit.name %><h1/>
-<% if @habit.number_completed > 0 %>
-<h3>You've been succesful for <%= @habit.number_completed %> days.</h3>
-<% else %>
-<h3>Time to get crackin'!</h3>
-<% end %>
-<div class = 'row'>
-  <%= form_for @habit do |f| %>
-  <div class="input-field">
-  <input type= 'checkbox' name= 'success' id= <%= @habit.id %> />
-    <%= f.label :number_completed, "Were you succesful today?", for: @habit.id %>
-  </div>
-  <div class = 'input-field'>
-    <%= f.submit 'Save', class: 'btn' %>
-  </div>
+  <% if @habit.number_completed == @habit.times_to_completion%>
+    <h3 class = "green-text" > CONGRATULATIONS!!!</h3>
+  <% elsif @habit.number_completed > 0 %>
+    <h3>You've been succesful for <%= @habit.number_completed %> days.</h3>
+    <div class = 'row'>
+    <%= form_for @habit do |f| %>
+    <div class="input-field">
+      <input type= 'checkbox' name= 'success' id= <%= @habit.id %> />
+        <%= f.label :number_completed, "Were you succesful today?", for: @habit.id %>
+      </div>
+        <div class = 'input-field'>
+          <%= f.submit 'Save', class: 'btn' %>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+  <h3>Time to get crackin'!</h3>
+    <div class = 'row'>
+      <%= form_for @habit do |f| %>
+      <div class="input-field">
+      <input type= 'checkbox' name= 'success' id= <%= @habit.id %> />
+        <%= f.label :number_completed, "Were you succesful today?", for: @habit.id %>
+      </div>
+      <div class = 'input-field'>
+        <%= f.submit 'Save', class: 'btn' %>
+      </div>
+      <% end %>
+    </div>
   <% end %>
-</div>
 </div>

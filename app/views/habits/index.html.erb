@@ -1,33 +1,39 @@
-<h1>21 days to create a habit</h1>
+<h1>21 days to create a habit!</h1>
 <br />
+<h4>“If you believe you can change - if you make it a habit - the change becomes real.” </h4>
 
 <%= link_to "Add a Habit", new_habit_path, class: "btn" %>
+<br />
 
-<% @habits.each do |habit| %>
-  <div class="row">
+<div class="row">
+  <% @habits.each do |habit| %>
     <div class="col s12 m6">
-      <div class="card blue-grey darken-1">
+      <div class="card blue-grey darken-1 card-size">
         <div class="card-content white-text">
-          <span class="card-title"><%= habit.name %></span>
-          <%= link_to  'View Habit', habit_path(habit) %>
-
-            <!-- <div class = 'row'> -->
-              <!-- <div class = "input-field col s12">
-
-                <%= form_for habit do |f| %>
-                        <%= f.check_box :completed, class: "filled-in", id: habit.id %>
-                        <%= f.label :completed, for: habit.id %>
-                        <%= f.submit 'Save', class: 'btn-flat white-text btn-border right' %>
-                  <% end %>
+          <span class="card-title"><h3><%= habit.name %></h3></span>
+          <br />
+          <% if habit.number_completed == habit.times_to_completion %>
+            <h3 class = "green-text" > CONGRATULATIONS!!!</h3>
+            <%= link_to 'Delete Habit', habit_path(habit), method: :delete %>
+          <% else %>
+            <% if habit.number_completed > 0 %>
+              <h5><%= habit.times_to_completion - habit.number_completed %> days left! You got this.</h5>
+              <%= link_to  'View Habit', habit_path(habit) %>
+              <div class="card-action">
+                <%= link_to  'Edit Habit', edit_habit_path(habit) %>
+                <%= link_to 'Delete Habit', habit_path(habit), method: :delete %>
               </div>
-            </div> -->
-
-
-        <div class="card-action">
-          <%= link_to  'Edit Habit', edit_habit_path(habit) %>
-          <%= link_to 'Delete Habit', habit_path(habit), method: :delete %>
+            <% else %>
+              <h5>Time to get crackin'!</h5>
+              <%= link_to  'View Habit', habit_path(habit) %>
+              <div class="card-action">
+                <%= link_to  'Edit Habit', edit_habit_path(habit) %>
+                <%= link_to 'Delete Habit', habit_path(habit), method: :delete %>
+              </div>
+            <% end %>
+          <% end %>
         </div>
       </div>
     </div>
-  </div>
-<% end %>
+  <% end %>
+</div>
